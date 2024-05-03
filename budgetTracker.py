@@ -1,4 +1,5 @@
 import json
+import random
 
 
 def add_expense(initial_budget, expense):
@@ -11,6 +12,7 @@ def add_expense(initial_budget, expense):
         return  initial_budget
     else:
         print("You dont have that much balance")
+        print( random.Random(initial_budget))
         return initial_budget
 
 
@@ -46,6 +48,7 @@ def main():
     print("Welcome to budget app")
     filepath = "budget_tracker.json"
     initial_budget,expense = load_from_json(filepath)
+
     if(initial_budget == 0):
         initial_budget=float(input("Please enter your budget"))
         expense = []
