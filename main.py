@@ -13,14 +13,13 @@ def view():
     with open("passwords.txt","r") as p:
         for line in p.readlines():
             data = line.rstrip()
-            print(data)
             user_name,pasw = data.split("|")
-            print(f"User: {user_name} | Password: {fer.decrypt(pasw.encode().decode())}")
+            print(f"User: {user_name} | Password: {fer.decrypt(pasw).decode()}")
 def add():
     user_name = input("Enter user name")
     pas= input("Enter password")
     with open("passwords.txt","a") as p:
-        p.write(user_name+" | "+ fer.encrypt(pas.encode().decode()))
+        p.write(user_name+" | "+ fer.encrypt(pas.encode()).decode())
 def main():
 
 
@@ -36,7 +35,7 @@ def main():
                 continue
 
 if __name__=="__main__":
-    master_pwd = input("What is the master password")
+    master_pwd = input("What is the master password")#abhi
     key = load_key() + master_pwd.encode()
     fer = Fernet(key)
     main()
