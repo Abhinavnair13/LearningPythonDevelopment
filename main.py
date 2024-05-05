@@ -1,4 +1,8 @@
 from cryptography.fernet import Fernet
+from cryptography.hazmat.backends import default_backend
+from cryptography.hazmat.primitives import hashes
+from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
+
 
 # def write_key():
 #     key = Fernet.generate_key()
@@ -30,12 +34,18 @@ def main():
                 view()
             case 2:
                 add()
+            case 3:
+                exit()
             case _:
                 print("Invalid choice")
                 continue
 
+
+
 if __name__=="__main__":
     master_pwd = input("What is the master password")#abhi
-    key = load_key() + master_pwd.encode()
+    if(master_pwd!="abhi"):
+        raise ValueError("Invalid password")
+    key = load_key()
     fer = Fernet(key)
     main()
